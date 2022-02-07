@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    image: apache
+    build: .
+    container_name: tramp_walnutbrains_org
+    environment:
+      VIRTUAL_HOST: tramp.walnutbrains.org 
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: tramp.walnutbrains.org 
+      LETSENCRYPT_EMAIL: smcgarril@gmail.com
+    restart: always
+    ports:
+      - "8080:80"
+    expose:
+      - 80
+networks:
+  default:
+    external:
+      name: nginx-proxy
